@@ -1,0 +1,10 @@
+{
+  "name": "Parcourir les projets",
+  "description": "Accueil → ouverture d'un projet → retour.",
+  "steps": [
+    { "goto": "/" },
+    { "click": { "role": "link", "name": "Website redesign", "exact": false } },
+    { "click": { "role": "link", "name": "← All projects" } },
+    { "click": { "role": "link", "name": "Mobile app", "exact": false } }
+  ]
+}

@@ -1,0 +1,5447 @@
+[
+  {
+    "method": "PATCH",
+    "template": "/api/v2/filters/:id",
+    "calls": 3,
+    "statuses": {
+      "200": 3
+    },
+    "entity": "Filter",
+    "requestFormat": "json-patch",
+    "requestSchema": {
+      "type": "object",
+      "properties": {
+        "is_favorite": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "is_favorite"
+      ]
+    },
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "filters": {
+          "type": "object",
+          "properties": {
+            "s": {
+              "type": "string"
+            },
+            "sort_by": {
+              "type": "null"
+            },
+            "order_by": {
+              "type": "null"
+            },
+            "filter": {
+              "type": "string"
+            },
+            "filter_include_nulls": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "s",
+            "sort_by",
+            "order_by",
+            "filter",
+            "filter_include_nulls"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "created": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updated": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "username",
+            "created",
+            "updated"
+          ]
+        },
+        "is_favorite": {
+          "type": "boolean"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "filters",
+        "title",
+        "description",
+        "owner",
+        "is_favorite",
+        "created",
+        "updated"
+      ]
+    },
+    "example": {
+      "created": "<date>",
+      "description": "",
+      "filters": {
+        "filter": "done = false && assignees = demo",
+        "filter_include_nulls": false,
+        "order_by": null,
+        "s": "",
+        "sort_by": null
+      },
+      "id": "<id>",
+      "is_favorite": true,
+      "owner": {
+        "created": "<date>",
+        "id": "<id>",
+        "name": "",
+        "updated": "<date>",
+        "username": "demo"
+      },
+      "title": "My Open Tasks",
+      "updated": "<date>"
+    },
+    "errors": []
+  },
+  {
+    "method": "GET",
+    "template": "/api/v2/info",
+    "calls": 88,
+    "statuses": {
+      "200": 88
+    },
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "frontend_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "motd": {
+          "type": "string"
+        },
+        "link_sharing_enabled": {
+          "type": "boolean"
+        },
+        "max_file_size": {
+          "type": "string"
+        },
+        "max_items_per_page": {
+          "type": "integer"
+        },
+        "available_migrators": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "csv",
+              "planka",
+              "ticktick",
+              "vikunja-file",
+              "wekan"
+            ]
+          }
+        },
+        "task_attachments_enabled": {
+          "type": "boolean"
+        },
+        "enabled_background_providers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "totp_enabled": {
+          "type": "boolean"
+        },
+        "legal": {
+          "type": "object",
+          "properties": {
+            "imprint_url": {
+              "type": "string"
+            },
+            "privacy_policy_url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "imprint_url",
+            "privacy_policy_url"
+          ]
+        },
+        "caldav_enabled": {
+          "type": "boolean"
+        },
+        "auth": {
+          "type": "object",
+          "properties": {
+            "local": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                },
+                "registration_enabled": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "enabled",
+                "registration_enabled"
+              ]
+            },
+            "ldap": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "enabled"
+              ]
+            },
+            "openid_connect": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                },
+                "providers": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "enabled",
+                "providers"
+              ]
+            }
+          },
+          "required": [
+            "local",
+            "ldap",
+            "openid_connect"
+          ]
+        },
+        "email_reminders_enabled": {
+          "type": "boolean"
+        },
+        "user_deletion_enabled": {
+          "type": "boolean"
+        },
+        "task_comments_enabled": {
+          "type": "boolean"
+        },
+        "demo_mode_enabled": {
+          "type": "boolean"
+        },
+        "webhooks_enabled": {
+          "type": "boolean"
+        },
+        "public_teams_enabled": {
+          "type": "boolean"
+        },
+        "allow_icon_changes": {
+          "type": "boolean"
+        },
+        "enabled_pro_features": {
+          "type": "array",
+          "items": {
+            "type": []
+          }
+        },
+        "concurrent_writes": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "version",
+        "frontend_url",
+        "motd",
+        "link_sharing_enabled",
+        "max_file_size",
+        "max_items_per_page",
+        "available_migrators",
+        "task_attachments_enabled",
+        "enabled_background_providers",
+        "totp_enabled",
+        "legal",
+        "caldav_enabled",
+        "auth",
+        "email_reminders_enabled",
+        "user_deletion_enabled",
+        "task_comments_enabled",
+        "demo_mode_enabled",
+        "webhooks_enabled",
+        "public_teams_enabled",
+        "allow_icon_changes",
+        "enabled_pro_features",
+        "concurrent_writes"
+      ]
+    },
+    "example": {
+      "$schema": "http://localhost:3456/api/v2/schemas/VikunjaInfos.json",
+      "allow_icon_changes": false,
+      "auth": {
+        "ldap": {
+          "enabled": false
+        },
+        "local": {
+          "enabled": true,
+          "registration_enabled": true
+        },
+        "openid_connect": {
+          "enabled": false,
+          "providers": null
+        }
+      },
+      "available_migrators": [
+        "vikunja-file",
+        "ticktick",
+        "wekan",
+        "csv",
+        "planka"
+      ],
+      "caldav_enabled": true,
+      "concurrent_writes": false,
+      "demo_mode_enabled": false,
+      "email_reminders_enabled": true,
+      "enabled_background_providers": [
+        "upload"
+      ],
+      "enabled_pro_features": [],
+      "frontend_url": "http://localhost:3456/",
+      "legal": {
+        "imprint_url": "",
+        "privacy_policy_url": ""
+      },
+      "link_sharing_enabled": true,
+      "max_file_size": "20MB",
+      "max_items_per_page": 50,
+      "motd": "",
+      "public_teams_enabled": false,
+      "task_attachments_enabled": true,
+      "task_comments_enabled": true,
+      "totp_enabled": true,
+      "user_deletion_enabled": true,
+      "version": "v2.7.0",
+      "webhooks_enabled": true
+    },
+    "errors": []
+  },
+  {
+    "method": "GET",
+    "template": "/api/v2/labels",
+    "calls": 88,
+    "statuses": {
+      "200": 88
+    },
+    "entity": "Label",
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string",
+                "enum": [
+                  "bug",
+                  "feature",
+                  "urgent"
+                ]
+              },
+              "description": {
+                "type": "string"
+              },
+              "hex_color": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "created": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "username",
+                  "created",
+                  "updated"
+                ]
+              },
+              "created": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "description",
+              "hex_color",
+              "created_by",
+              "created",
+              "updated"
+            ]
+          }
+        },
+        "total": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "total_pages": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "items",
+        "total",
+        "page",
+        "per_page",
+        "total_pages"
+      ]
+    },
+    "example": {
+      "$schema": "http://localhost:3456/api/v2/schemas/PaginatedLabelWithTaskID.json",
+      "items": [
+        {
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "description": "",
+          "hex_color": "e5484d",
+          "id": "<id>",
+          "title": "bug",
+          "updated": "<date>"
+        },
+        {
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "description": "",
+          "hex_color": "6366f1",
+          "id": "<id>",
+          "title": "feature",
+          "updated": "<date>"
+        },
+        {
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "description": "",
+          "hex_color": "f59e0b",
+          "id": "<id>",
+          "title": "urgent",
+          "updated": "<date>"
+        }
+      ],
+      "page": 1,
+      "per_page": 50,
+      "total": 3,
+      "total_pages": 1
+    },
+    "errors": []
+  },
+  {
+    "method": "GET",
+    "template": "/api/v2/notifications",
+    "calls": 88,
+    "statuses": {
+      "200": 88
+    },
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": []
+          }
+        },
+        "total": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "total_pages": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "items",
+        "total",
+        "page",
+        "per_page",
+        "total_pages"
+      ]
+    },
+    "example": {
+      "$schema": "http://localhost:3456/api/v2/schemas/PaginatedDatabaseNotification.json",
+      "items": [],
+      "page": 1,
+      "per_page": 20,
+      "total": 0,
+      "total_pages": 0
+    },
+    "errors": []
+  },
+  {
+    "method": "GET",
+    "template": "/api/v2/projects",
+    "calls": 91,
+    "statuses": {
+      "200": 91
+    },
+    "entity": "Project",
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "identifier": {
+                "type": "string"
+              },
+              "hex_color": {
+                "type": "string"
+              },
+              "parent_project_id": {
+                "type": "integer"
+              },
+              "owner": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "created": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "username",
+                  "created",
+                  "updated"
+                ]
+              },
+              "is_archived": {
+                "type": "boolean"
+              },
+              "background_information": {
+                "type": "null"
+              },
+              "background_blur_hash": {
+                "type": "string"
+              },
+              "is_favorite": {
+                "type": "boolean"
+              },
+              "position": {
+                "type": "integer"
+              },
+              "views": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string",
+                      "enum": [
+                        "Gantt",
+                        "Kanban",
+                        "List",
+                        "Table"
+                      ]
+                    },
+                    "project_id": {
+                      "type": "integer"
+                    },
+                    "view_kind": {
+                      "type": "string",
+                      "enum": [
+                        "gantt",
+                        "kanban",
+                        "list",
+                        "table"
+                      ]
+                    },
+                    "filter": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "s": {
+                          "type": "string"
+                        },
+                        "sort_by": {
+                          "type": "null"
+                        },
+                        "order_by": {
+                          "type": "null"
+                        },
+                        "filter": {
+                          "type": "string"
+                        },
+                        "filter_include_nulls": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "s",
+                        "sort_by",
+                        "order_by",
+                        "filter",
+                        "filter_include_nulls"
+                      ]
+                    },
+                    "position": {
+                      "type": "integer"
+                    },
+                    "bucket_configuration_mode": {
+                      "type": "string",
+                      "enum": [
+                        "manual",
+                        "none"
+                      ]
+                    },
+                    "bucket_configuration": {
+                      "type": "null"
+                    },
+                    "default_bucket_id": {
+                      "type": "integer"
+                    },
+                    "done_bucket_id": {
+                      "type": "integer"
+                    },
+                    "updated": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "created": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "project_id",
+                    "view_kind",
+                    "filter",
+                    "position",
+                    "bucket_configuration_mode",
+                    "bucket_configuration",
+                    "default_bucket_id",
+                    "done_bucket_id",
+                    "updated",
+                    "created"
+                  ]
+                }
+              },
+              "max_permission": {
+                "type": "integer"
+              },
+              "created": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "description",
+              "identifier",
+              "hex_color",
+              "parent_project_id",
+              "owner",
+              "is_archived",
+              "background_information",
+              "background_blur_hash",
+              "is_favorite",
+              "position",
+              "views",
+              "max_permission",
+              "created",
+              "updated"
+            ]
+          }
+        },
+        "total": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "total_pages": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "items",
+        "total",
+        "page",
+        "per_page",
+        "total_pages"
+      ]
+    },
+    "example": {
+      "$schema": "http://localhost:3456/api/v2/schemas/PaginatedProject.json",
+      "items": [
+        {
+          "background_blur_hash": "",
+          "background_information": null,
+          "created": "<date>",
+          "description": "",
+          "hex_color": "",
+          "id": "<id>",
+          "identifier": "",
+          "is_archived": false,
+          "is_favorite": false,
+          "max_permission": 2,
+          "owner": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "parent_project_id": "<id>",
+          "position": 65536,
+          "title": "Inbox",
+          "updated": "<date>",
+          "views": [
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "none",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": {
+                "filter": "done = false",
+                "filter_include_nulls": false,
+                "order_by": null,
+                "s": "",
+                "sort_by": null
+              },
+              "id": "<id>",
+              "position": 100,
+              "project_id": "<id>",
+              "title": "List",
+              "updated": "<date>",
+              "view_kind": "list"
+            },
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "none",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": null,
+              "id": "<id>",
+              "position": 200,
+              "project_id": "<id>",
+              "title": "Gantt",
+              "updated": "<date>",
+              "view_kind": "gantt"
+            },
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "none",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": null,
+              "id": "<id>",
+              "position": 300,
+              "project_id": "<id>",
+              "title": "Table",
+              "updated": "<date>",
+              "view_kind": "table"
+            },
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "manual",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": null,
+              "id": "<id>",
+              "position": 400,
+              "project_id": "<id>",
+              "title": "Kanban",
+              "updated": "<date>",
+              "view_kind": "kanban"
+            }
+          ]
+        },
+        {
+          "background_blur_hash": "",
+          "background_information": null,
+          "created": "<date>",
+          "description": "Refonte du site vitrine",
+          "hex_color": "6366f1",
+          "id": "<id>",
+          "identifier": "",
+          "is_archived": false,
+          "is_favorite": false,
+          "max_permission": 2,
+          "owner": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "parent_project_id": "<id>",
+          "position": 131072,
+          "title": "Website redesign",
+          "updated": "<date>",
+          "views": [
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "none",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": {
+                "filter": "done = false",
+                "filter_include_nulls": false,
+                "order_by": null,
+                "s": "",
+                "sort_by": null
+              },
+              "id": "<id>",
+              "position": 100,
+              "project_id": "<id>",
+              "title": "List",
+              "updated": "<date>",
+              "view_kind": "list"
+            },
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "none",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": null,
+              "id": "<id>",
+              "position": 200,
+              "project_id": "<id>",
+              "title": "Gantt",
+              "updated": "<date>",
+              "view_kind": "gantt"
+            },
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "none",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": null,
+              "id": "<id>",
+              "position": 300,
+              "project_id": "<id>",
+              "title": "Table",
+              "updated": "<date>",
+              "view_kind": "table"
+            },
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "manual",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": null,
+              "id": "<id>",
+              "position": 400,
+              "project_id": "<id>",
+              "title": "Kanban",
+              "updated": "<date>",
+              "view_kind": "kanban"
+            }
+          ]
+        },
+        {
+          "background_blur_hash": "",
+          "background_information": null,
+          "created": "<date>",
+          "description": "",
+          "hex_color": "0ea5e9",
+          "id": "<id>",
+          "identifier": "",
+          "is_archived": false,
+          "is_favorite": false,
+          "max_permission": 2,
+          "owner": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "parent_project_id": "<id>",
+          "position": 196608,
+          "title": "Mobile app",
+          "updated": "<date>",
+          "views": [
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "none",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": {
+                "filter": "done = false",
+                "filter_include_nulls": false,
+                "order_by": null,
+                "s": "",
+                "sort_by": null
+              },
+              "id": "<id>",
+              "position": 100,
+              "project_id": "<id>",
+              "title": "List",
+              "updated": "<date>",
+              "view_kind": "list"
+            },
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "none",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": null,
+              "id": "<id>",
+              "position": 200,
+              "project_id": "<id>",
+              "title": "Gantt",
+              "updated": "<date>",
+              "view_kind": "gantt"
+            },
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "none",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": null,
+              "id": "<id>",
+              "position": 300,
+              "project_id": "<id>",
+              "title": "Table",
+              "updated": "<date>",
+              "view_kind": "table"
+            },
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "manual",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": null,
+              "id": "<id>",
+              "position": 400,
+              "project_id": "<id>",
+              "title": "Kanban",
+              "updated": "<date>",
+              "view_kind": "kanban"
+            }
+          ]
+        },
+        {
+          "background_blur_hash": "",
+          "background_information": null,
+          "created": "<date>",
+          "description": "",
+          "hex_color": "",
+          "id": "<id>",
+          "identifier": "",
+          "is_archived": false,
+          "is_favorite": false,
+          "max_permission": 2,
+          "owner": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "parent_project_id": "<id>",
+          "position": 262144,
+          "title": "Archive 2025",
+          "updated": "<date>",
+          "views": [
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "none",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": {
+                "filter": "done = false",
+                "filter_include_nulls": false,
+                "order_by": null,
+                "s": "",
+                "sort_by": null
+              },
+              "id": "<id>",
+              "position": 100,
+              "project_id": "<id>",
+              "title": "List",
+              "updated": "<date>",
+              "view_kind": "list"
+            },
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "none",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": null,
+              "id": "<id>",
+              "position": 200,
+              "project_id": "<id>",
+              "title": "Gantt",
+              "updated": "<date>",
+              "view_kind": "gantt"
+            },
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "none",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": null,
+              "id": "<id>",
+              "position": 300,
+              "project_id": "<id>",
+              "title": "Table",
+              "updated": "<date>",
+              "view_kind": "table"
+            },
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "manual",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": null,
+              "id": "<id>",
+              "position": 400,
+              "project_id": "<id>",
+              "title": "Kanban",
+              "updated": "<date>",
+              "view_kind": "kanban"
+            }
+          ]
+        },
+        {
+          "background_blur_hash": "",
+          "background_information": null,
+          "created": "<date>",
+          "description": "",
+          "hex_color": "",
+          "id": "<id>",
+          "identifier": "",
+          "is_archived": false,
+          "is_favorite": false,
+          "max_permission": 2,
+          "owner": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "parent_project_id": "<id>",
+          "position": 0,
+          "title": "My Open Tasks",
+          "updated": "<date>",
+          "views": [
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "none",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": null,
+              "id": "<id>",
+              "position": 100,
+              "project_id": "<id>",
+              "title": "List",
+              "updated": "<date>",
+              "view_kind": "list"
+            },
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "none",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": null,
+              "id": "<id>",
+              "position": 200,
+              "project_id": "<id>",
+              "title": "Gantt",
+              "updated": "<date>",
+              "view_kind": "gantt"
+            },
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "none",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": null,
+              "id": "<id>",
+              "position": 300,
+              "project_id": "<id>",
+              "title": "Table",
+              "updated": "<date>",
+              "view_kind": "table"
+            },
+            {
+              "bucket_configuration": null,
+              "bucket_configuration_mode": "manual",
+              "created": "<date>",
+              "default_bucket_id": "<id>",
+              "done_bucket_id": "<id>",
+              "filter": null,
+              "id": "<id>",
+              "position": 400,
+              "project_id": "<id>",
+              "title": "Kanban",
+              "updated": "<date>",
+              "view_kind": "kanban"
+            }
+          ]
+        }
+      ],
+      "page": 1,
+      "per_page": 50,
+      "total": 4,
+      "total_pages": 1
+    },
+    "errors": []
+  },
+  {
+    "method": "GET",
+    "template": "/api/v2/projects/:id",
+    "calls": 18,
+    "statuses": {
+      "200": 18
+    },
+    "entity": "Project",
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "identifier": {
+          "type": "string"
+        },
+        "hex_color": {
+          "type": "string"
+        },
+        "parent_project_id": {
+          "type": "integer"
+        },
+        "owner": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "created": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updated": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "username",
+            "created",
+            "updated"
+          ]
+        },
+        "is_archived": {
+          "type": "boolean"
+        },
+        "background_information": {
+          "type": "null"
+        },
+        "background_blur_hash": {
+          "type": "string"
+        },
+        "is_favorite": {
+          "type": "boolean"
+        },
+        "position": {
+          "type": "integer"
+        },
+        "views": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string",
+                "enum": [
+                  "Gantt",
+                  "Kanban",
+                  "List",
+                  "Table"
+                ]
+              },
+              "project_id": {
+                "type": "integer"
+              },
+              "view_kind": {
+                "type": "string",
+                "enum": [
+                  "gantt",
+                  "kanban",
+                  "list",
+                  "table"
+                ]
+              },
+              "filter": {
+                "type": [
+                  "null",
+                  "object"
+                ],
+                "properties": {
+                  "s": {
+                    "type": "string"
+                  },
+                  "sort_by": {
+                    "type": "null"
+                  },
+                  "order_by": {
+                    "type": "null"
+                  },
+                  "filter": {
+                    "type": "string"
+                  },
+                  "filter_include_nulls": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "s",
+                  "sort_by",
+                  "order_by",
+                  "filter",
+                  "filter_include_nulls"
+                ]
+              },
+              "position": {
+                "type": "integer"
+              },
+              "bucket_configuration_mode": {
+                "type": "string",
+                "enum": [
+                  "manual",
+                  "none"
+                ]
+              },
+              "bucket_configuration": {
+                "type": "null"
+              },
+              "default_bucket_id": {
+                "type": "integer"
+              },
+              "done_bucket_id": {
+                "type": "integer"
+              },
+              "updated": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "created": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "project_id",
+              "view_kind",
+              "filter",
+              "position",
+              "bucket_configuration_mode",
+              "bucket_configuration",
+              "default_bucket_id",
+              "done_bucket_id",
+              "updated",
+              "created"
+            ]
+          }
+        },
+        "max_permission": {
+          "type": "integer"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "identifier",
+        "hex_color",
+        "parent_project_id",
+        "owner",
+        "is_archived",
+        "background_information",
+        "background_blur_hash",
+        "is_favorite",
+        "position",
+        "views",
+        "max_permission",
+        "created",
+        "updated"
+      ]
+    },
+    "example": {
+      "$schema": "http://localhost:3456/api/v2/schemas/ProjectReadBody.json",
+      "background_blur_hash": "",
+      "background_information": null,
+      "created": "<date>",
+      "description": "",
+      "hex_color": "",
+      "id": "<id>",
+      "identifier": "",
+      "is_archived": false,
+      "is_favorite": false,
+      "max_permission": 2,
+      "owner": {
+        "created": "<date>",
+        "id": "<id>",
+        "name": "",
+        "updated": "<date>",
+        "username": "demo"
+      },
+      "parent_project_id": "<id>",
+      "position": 0,
+      "title": "My Open Tasks",
+      "updated": "<date>",
+      "views": [
+        {
+          "bucket_configuration": null,
+          "bucket_configuration_mode": "none",
+          "created": "<date>",
+          "default_bucket_id": "<id>",
+          "done_bucket_id": "<id>",
+          "filter": null,
+          "id": "<id>",
+          "position": 100,
+          "project_id": "<id>",
+          "title": "List",
+          "updated": "<date>",
+          "view_kind": "list"
+        },
+        {
+          "bucket_configuration": null,
+          "bucket_configuration_mode": "none",
+          "created": "<date>",
+          "default_bucket_id": "<id>",
+          "done_bucket_id": "<id>",
+          "filter": null,
+          "id": "<id>",
+          "position": 200,
+          "project_id": "<id>",
+          "title": "Gantt",
+          "updated": "<date>",
+          "view_kind": "gantt"
+        },
+        {
+          "bucket_configuration": null,
+          "bucket_configuration_mode": "none",
+          "created": "<date>",
+          "default_bucket_id": "<id>",
+          "done_bucket_id": "<id>",
+          "filter": null,
+          "id": "<id>",
+          "position": 300,
+          "project_id": "<id>",
+          "title": "Table",
+          "updated": "<date>",
+          "view_kind": "table"
+        },
+        {
+          "bucket_configuration": null,
+          "bucket_configuration_mode": "manual",
+          "created": "<date>",
+          "default_bucket_id": "<id>",
+          "done_bucket_id": "<id>",
+          "filter": null,
+          "id": "<id>",
+          "position": 400,
+          "project_id": "<id>",
+          "title": "Kanban",
+          "updated": "<date>",
+          "view_kind": "kanban"
+        }
+      ]
+    },
+    "errors": []
+  },
+  {
+    "method": "PATCH",
+    "template": "/api/v2/projects/:id",
+    "calls": 8,
+    "statuses": {
+      "200": 8
+    },
+    "entity": "Project",
+    "requestFormat": "json-patch",
+    "requestSchema": {
+      "type": "object",
+      "properties": {
+        "is_favorite": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "is_favorite"
+      ]
+    },
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "identifier": {
+          "type": "string"
+        },
+        "hex_color": {
+          "type": "string"
+        },
+        "parent_project_id": {
+          "type": "integer"
+        },
+        "owner": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "created": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updated": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "username",
+            "created",
+            "updated"
+          ]
+        },
+        "is_archived": {
+          "type": "boolean"
+        },
+        "background_information": {
+          "type": "null"
+        },
+        "background_blur_hash": {
+          "type": "string"
+        },
+        "is_favorite": {
+          "type": "boolean"
+        },
+        "position": {
+          "type": "integer"
+        },
+        "views": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string",
+                "enum": [
+                  "Gantt",
+                  "Kanban",
+                  "List",
+                  "Table"
+                ]
+              },
+              "project_id": {
+                "type": "integer"
+              },
+              "view_kind": {
+                "type": "string",
+                "enum": [
+                  "gantt",
+                  "kanban",
+                  "list",
+                  "table"
+                ]
+              },
+              "filter": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "s": {
+                    "type": "string"
+                  },
+                  "sort_by": {
+                    "type": "null"
+                  },
+                  "order_by": {
+                    "type": "null"
+                  },
+                  "filter": {
+                    "type": "string"
+                  },
+                  "filter_include_nulls": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "s",
+                  "sort_by",
+                  "order_by",
+                  "filter",
+                  "filter_include_nulls"
+                ]
+              },
+              "position": {
+                "type": "integer"
+              },
+              "bucket_configuration_mode": {
+                "type": "string",
+                "enum": [
+                  "manual",
+                  "none"
+                ]
+              },
+              "bucket_configuration": {
+                "type": "null"
+              },
+              "default_bucket_id": {
+                "type": "integer"
+              },
+              "done_bucket_id": {
+                "type": "integer"
+              },
+              "updated": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "created": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "project_id",
+              "view_kind",
+              "filter",
+              "position",
+              "bucket_configuration_mode",
+              "bucket_configuration",
+              "default_bucket_id",
+              "done_bucket_id",
+              "updated",
+              "created"
+            ]
+          }
+        },
+        "max_permission": {
+          "type": "null"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "identifier",
+        "hex_color",
+        "parent_project_id",
+        "owner",
+        "is_archived",
+        "background_information",
+        "background_blur_hash",
+        "is_favorite",
+        "position",
+        "views",
+        "max_permission",
+        "created",
+        "updated"
+      ]
+    },
+    "example": {
+      "$schema": "http://localhost/api/v2/schemas/Project.json",
+      "background_blur_hash": "",
+      "background_information": null,
+      "created": "<date>",
+      "description": "",
+      "hex_color": "",
+      "id": "<id>",
+      "identifier": "",
+      "is_archived": false,
+      "is_favorite": true,
+      "max_permission": null,
+      "owner": {
+        "created": "<date>",
+        "id": "<id>",
+        "name": "",
+        "updated": "<date>",
+        "username": "demo"
+      },
+      "parent_project_id": "<id>",
+      "position": 65536,
+      "title": "Inbox",
+      "updated": "<date>",
+      "views": [
+        {
+          "bucket_configuration": null,
+          "bucket_configuration_mode": "none",
+          "created": "<date>",
+          "default_bucket_id": "<id>",
+          "done_bucket_id": "<id>",
+          "filter": {
+            "filter": "done = false",
+            "filter_include_nulls": false,
+            "order_by": null,
+            "s": "",
+            "sort_by": null
+          },
+          "id": "<id>",
+          "position": 100,
+          "project_id": "<id>",
+          "title": "List",
+          "updated": "<date>",
+          "view_kind": "list"
+        },
+        {
+          "bucket_configuration": null,
+          "bucket_configuration_mode": "none",
+          "created": "<date>",
+          "default_bucket_id": "<id>",
+          "done_bucket_id": "<id>",
+          "filter": null,
+          "id": "<id>",
+          "position": 200,
+          "project_id": "<id>",
+          "title": "Gantt",
+          "updated": "<date>",
+          "view_kind": "gantt"
+        },
+        {
+          "bucket_configuration": null,
+          "bucket_configuration_mode": "none",
+          "created": "<date>",
+          "default_bucket_id": "<id>",
+          "done_bucket_id": "<id>",
+          "filter": null,
+          "id": "<id>",
+          "position": 300,
+          "project_id": "<id>",
+          "title": "Table",
+          "updated": "<date>",
+          "view_kind": "table"
+        },
+        {
+          "bucket_configuration": null,
+          "bucket_configuration_mode": "manual",
+          "created": "<date>",
+          "default_bucket_id": "<id>",
+          "done_bucket_id": "<id>",
+          "filter": null,
+          "id": "<id>",
+          "position": 400,
+          "project_id": "<id>",
+          "title": "Kanban",
+          "updated": "<date>",
+          "view_kind": "kanban"
+        }
+      ]
+    },
+    "errors": []
+  },
+  {
+    "method": "POST",
+    "template": "/api/v2/projects/:id/tasks/bulk",
+    "calls": 2,
+    "statuses": {
+      "201": 2
+    },
+    "requestSchema": {
+      "type": "object",
+      "properties": {
+        "tasks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "done": {
+                "type": "boolean"
+              },
+              "priority": {
+                "type": "integer"
+              },
+              "hex_color": {
+                "type": "string"
+              },
+              "percent_done": {
+                "type": "integer"
+              },
+              "repeat_after": {
+                "type": "integer"
+              },
+              "repeat_mode": {
+                "type": "integer"
+              },
+              "is_favorite": {
+                "type": "boolean"
+              },
+              "bucket_id": {
+                "type": "integer"
+              },
+              "project_id": {
+                "type": "integer"
+              },
+              "reminders": {
+                "type": "array",
+                "items": {
+                  "type": []
+                }
+              },
+              "cover_image_attachment_id": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "title",
+              "description",
+              "done",
+              "priority",
+              "hex_color",
+              "percent_done",
+              "repeat_after",
+              "repeat_mode",
+              "is_favorite",
+              "bucket_id",
+              "project_id",
+              "reminders",
+              "cover_image_attachment_id"
+            ]
+          }
+        }
+      },
+      "required": [
+        "tasks"
+      ]
+    },
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "tasks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "project_id": {
+                "type": "integer"
+              },
+              "done": {
+                "type": "boolean"
+              },
+              "done_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "due_date": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "reminders": {
+                "type": "null"
+              },
+              "repeat_after": {
+                "type": "integer"
+              },
+              "repeat_mode": {
+                "type": "integer"
+              },
+              "priority": {
+                "type": "integer"
+              },
+              "start_date": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "end_date": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "assignees": {
+                "type": "array",
+                "items": {
+                  "type": []
+                }
+              },
+              "labels": {
+                "type": "null"
+              },
+              "hex_color": {
+                "type": "string"
+              },
+              "percent_done": {
+                "type": "integer"
+              },
+              "identifier": {
+                "type": "string"
+              },
+              "index": {
+                "type": "integer"
+              },
+              "related_tasks": {
+                "type": "null"
+              },
+              "attachments": {
+                "type": "null"
+              },
+              "cover_image_attachment_id": {
+                "type": "integer"
+              },
+              "is_favorite": {
+                "type": "boolean"
+              },
+              "created": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "bucket_id": {
+                "type": "integer"
+              },
+              "position": {
+                "type": "integer"
+              },
+              "reactions": {
+                "type": "null"
+              },
+              "created_by": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "created": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "username",
+                  "created",
+                  "updated"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "description",
+              "project_id",
+              "done",
+              "done_at",
+              "due_date",
+              "reminders",
+              "repeat_after",
+              "repeat_mode",
+              "priority",
+              "start_date",
+              "end_date",
+              "assignees",
+              "labels",
+              "hex_color",
+              "percent_done",
+              "identifier",
+              "index",
+              "related_tasks",
+              "attachments",
+              "cover_image_attachment_id",
+              "is_favorite",
+              "created",
+              "updated",
+              "bucket_id",
+              "position",
+              "reactions",
+              "created_by"
+            ]
+          }
+        }
+      },
+      "required": [
+        "tasks"
+      ]
+    },
+    "example": {
+      "tasks": [
+        {
+          "assignees": [],
+          "attachments": null,
+          "bucket_id": "<id>",
+          "cover_image_attachment_id": "<id>",
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "description": "",
+          "done": false,
+          "done_at": "<date>",
+          "due_date": "<date>",
+          "end_date": "<date>",
+          "hex_color": "",
+          "id": "<id>",
+          "identifier": "#5",
+          "index": 5,
+          "is_favorite": false,
+          "labels": null,
+          "percent_done": 0,
+          "position": 0,
+          "priority": 0,
+          "project_id": "<id>",
+          "reactions": null,
+          "related_tasks": null,
+          "reminders": null,
+          "repeat_after": 0,
+          "repeat_mode": 0,
+          "start_date": "<date>",
+          "title": "Write tests",
+          "updated": "<date>"
+        }
+      ]
+    },
+    "errors": []
+  },
+  {
+    "method": "GET",
+    "template": "/api/v2/projects/:id/views/:id/buckets",
+    "calls": 2,
+    "statuses": {
+      "200": 2
+    },
+    "entity": "Bucket",
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "project_view_id": {
+                "type": "integer"
+              },
+              "limit": {
+                "type": "integer"
+              },
+              "count": {
+                "type": "integer"
+              },
+              "position": {
+                "type": "integer"
+              },
+              "created": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "created_by": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "created": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "username",
+                  "created",
+                  "updated"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "project_view_id",
+              "limit",
+              "count",
+              "position",
+              "created",
+              "updated",
+              "created_by"
+            ]
+          }
+        },
+        "total": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "total_pages": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "items",
+        "total",
+        "page",
+        "per_page",
+        "total_pages"
+      ]
+    },
+    "example": {
+      "$schema": "http://localhost:3456/api/v2/schemas/PaginatedBucket.json",
+      "items": [
+        {
+          "count": 0,
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "id": "<id>",
+          "limit": 0,
+          "position": 100,
+          "project_view_id": "<id>",
+          "title": "To-Do",
+          "updated": "<date>"
+        },
+        {
+          "count": 0,
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "id": "<id>",
+          "limit": 0,
+          "position": 200,
+          "project_view_id": "<id>",
+          "title": "Doing",
+          "updated": "<date>"
+        },
+        {
+          "count": 0,
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "id": "<id>",
+          "limit": 0,
+          "position": 300,
+          "project_view_id": "<id>",
+          "title": "Done",
+          "updated": "<date>"
+        }
+      ],
+      "page": 1,
+      "per_page": 50,
+      "total": 3,
+      "total_pages": 1
+    },
+    "errors": []
+  },
+  {
+    "method": "GET",
+    "template": "/api/v2/projects/:id/views/:id/buckets/tasks",
+    "calls": 1,
+    "statuses": {
+      "200": 1
+    },
+    "entity": "Task",
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "project_view_id": {
+                "type": "integer"
+              },
+              "tasks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "project_id": {
+                      "type": "integer"
+                    },
+                    "done": {
+                      "type": "boolean"
+                    },
+                    "done_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "due_date": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "reminders": {
+                      "type": "null"
+                    },
+                    "repeat_after": {
+                      "type": "integer"
+                    },
+                    "repeat_mode": {
+                      "type": "integer"
+                    },
+                    "priority": {
+                      "type": "integer"
+                    },
+                    "start_date": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "end_date": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "assignees": {
+                      "type": "null"
+                    },
+                    "labels": {
+                      "type": [
+                        "null",
+                        "array"
+                      ],
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "hex_color": {
+                            "type": "string"
+                          },
+                          "created_by": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "username": {
+                                "type": "string"
+                              },
+                              "created": {
+                                "type": "string",
+                                "format": "date-time"
+                              },
+                              "updated": {
+                                "type": "string",
+                                "format": "date-time"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "username",
+                              "created",
+                              "updated"
+                            ]
+                          },
+                          "created": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updated": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "title",
+                          "description",
+                          "hex_color",
+                          "created_by",
+                          "created",
+                          "updated"
+                        ]
+                      }
+                    },
+                    "hex_color": {
+                      "type": "string"
+                    },
+                    "percent_done": {
+                      "type": "integer"
+                    },
+                    "identifier": {
+                      "type": "string"
+                    },
+                    "index": {
+                      "type": "integer"
+                    },
+                    "related_tasks": {
+                      "type": "object",
+                      "properties": {},
+                      "required": []
+                    },
+                    "attachments": {
+                      "type": "null"
+                    },
+                    "cover_image_attachment_id": {
+                      "type": "integer"
+                    },
+                    "is_favorite": {
+                      "type": "boolean"
+                    },
+                    "created": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updated": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "bucket_id": {
+                      "type": "integer"
+                    },
+                    "comment_count": {
+                      "type": "integer"
+                    },
+                    "position": {
+                      "type": "integer"
+                    },
+                    "reactions": {
+                      "type": "null"
+                    },
+                    "created_by": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "username": {
+                          "type": "string"
+                        },
+                        "created": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "updated": {
+                          "type": "string",
+                          "format": "date-time"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "username",
+                        "created",
+                        "updated"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "description",
+                    "project_id",
+                    "done",
+                    "done_at",
+                    "due_date",
+                    "reminders",
+                    "repeat_after",
+                    "repeat_mode",
+                    "priority",
+                    "start_date",
+                    "end_date",
+                    "assignees",
+                    "labels",
+                    "hex_color",
+                    "percent_done",
+                    "identifier",
+                    "index",
+                    "related_tasks",
+                    "attachments",
+                    "cover_image_attachment_id",
+                    "is_favorite",
+                    "created",
+                    "updated",
+                    "bucket_id",
+                    "comment_count",
+                    "position",
+                    "reactions",
+                    "created_by"
+                  ]
+                }
+              },
+              "limit": {
+                "type": "integer"
+              },
+              "count": {
+                "type": "integer"
+              },
+              "position": {
+                "type": "integer"
+              },
+              "created": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "created_by": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "created": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "username",
+                  "created",
+                  "updated"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "project_view_id",
+              "limit",
+              "count",
+              "position",
+              "created",
+              "updated",
+              "created_by"
+            ]
+          }
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "items",
+        "total"
+      ]
+    },
+    "example": {
+      "$schema": "http://localhost:3456/api/v2/schemas/BucketsWithTasksBodyBody.json",
+      "items": [
+        {
+          "count": 3,
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "id": "<id>",
+          "limit": 0,
+          "position": 100,
+          "project_view_id": "<id>",
+          "tasks": [
+            {
+              "assignees": null,
+              "attachments": null,
+              "bucket_id": "<id>",
+              "comment_count": 0,
+              "cover_image_attachment_id": "<id>",
+              "created": "<date>",
+              "created_by": {
+                "created": "<date>",
+                "id": "<id>",
+                "name": "",
+                "updated": "<date>",
+                "username": "demo"
+              },
+              "description": "<p>Contrastes et navigation clavier</p>",
+              "done": false,
+              "done_at": "<date>",
+              "due_date": "<date>",
+              "end_date": "<date>",
+              "hex_color": "",
+              "id": "<id>",
+              "identifier": "#4",
+              "index": 4,
+              "is_favorite": false,
+              "labels": null,
+              "percent_done": 0,
+              "position": 8192,
+              "priority": 3,
+              "project_id": "<id>",
+              "reactions": null,
+              "related_tasks": {},
+              "reminders": null,
+              "repeat_after": 0,
+              "repeat_mode": 0,
+              "start_date": "<date>",
+              "title": "Audit accessibility",
+              "updated": "<date>"
+            },
+            {
+              "assignees": null,
+              "attachments": null,
+              "bucket_id": "<id>",
+              "comment_count": 0,
+              "cover_image_attachment_id": "<id>",
+              "created": "<date>",
+              "created_by": {
+                "created": "<date>",
+                "id": "<id>",
+                "name": "",
+                "updated": "<date>",
+                "username": "demo"
+              },
+              "description": "",
+              "done": false,
+              "done_at": "<date>",
+              "due_date": "<date>",
+              "end_date": "<date>",
+              "hex_color": "",
+              "id": "<id>",
+              "identifier": "#2",
+              "index": 2,
+              "is_favorite": false,
+              "labels": [
+                {
+                  "created": "<date>",
+                  "created_by": {
+                    "created": "<date>",
+                    "id": "<id>",
+                    "name": "",
+                    "updated": "<date>",
+                    "username": "demo"
+                  },
+                  "description": "",
+                  "hex_color": "e5484d",
+                  "id": "<id>",
+                  "title": "bug",
+                  "updated": "<date>"
+                },
+                {
+                  "created": "<date>",
+                  "created_by": {
+                    "created": "<date>",
+                    "id": "<id>",
+                    "name": "",
+                    "updated": "<date>",
+                    "username": "demo"
+                  },
+                  "description": "",
+                  "hex_color": "f59e0b",
+                  "id": "<id>",
+                  "title": "urgent",
+                  "updated": "<date>"
+                }
+              ],
+              "percent_done": 0,
+              "position": 32768,
+              "priority": 4,
+              "project_id": "<id>",
+              "reactions": null,
+              "related_tasks": {},
+              "reminders": null,
+              "repeat_after": 0,
+              "repeat_mode": 0,
+              "start_date": "<date>",
+              "title": "Fix checkout crash",
+              "updated": "<date>"
+            },
+            {
+              "assignees": null,
+              "attachments": null,
+              "bucket_id": "<id>",
+              "comment_count": 0,
+              "cover_image_attachment_id": "<id>",
+              "created": "<date>",
+              "created_by": {
+                "created": "<date>",
+                "id": "<id>",
+                "name": "",
+                "updated": "<date>",
+                "username": "demo"
+              },
+              "description": "",
+              "done": false,
+              "done_at": "<date>",
+              "due_date": "<date>",
+              "end_date": "<date>",
+              "hex_color": "",
+              "id": "<id>",
+              "identifier": "#1",
+              "index": 1,
+              "is_favorite": false,
+              "labels": [
+                {
+                  "created": "<date>",
+                  "created_by": {
+                    "created": "<date>",
+                    "id": "<id>",
+                    "name": "",
+                    "updated": "<date>",
+                    "username": "demo"
+                  },
+                  "description": "",
+                  "hex_color": "6366f1",
+                  "id": "<id>",
+                  "title": "feature",
+                  "updated": "<date>"
+                }
+              ],
+              "percent_done": 0,
+              "position": 65536,
+              "priority": 1,
+              "project_id": "<id>",
+              "reactions": null,
+              "related_tasks": {},
+              "reminders": null,
+              "repeat_after": 0,
+              "repeat_mode": 0,
+              "start_date": "<date>",
+              "title": "Update footer links",
+              "updated": "<date>"
+            }
+          ],
+          "title": "To-Do",
+          "updated": "<date>"
+        },
+        {
+          "count": 0,
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "id": "<id>",
+          "limit": 0,
+          "position": 200,
+          "project_view_id": "<id>",
+          "title": "Doing",
+          "updated": "<date>"
+        },
+        {
+          "count": 1,
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "id": "<id>",
+          "limit": 0,
+          "position": 300,
+          "project_view_id": "<id>",
+          "tasks": [
+            {
+              "assignees": null,
+              "attachments": null,
+              "bucket_id": "<id>",
+              "comment_count": 0,
+              "cover_image_attachment_id": "<id>",
+              "created": "<date>",
+              "created_by": {
+                "created": "<date>",
+                "id": "<id>",
+                "name": "",
+                "updated": "<date>",
+                "username": "demo"
+              },
+              "description": "",
+              "done": true,
+              "done_at": "<date>",
+              "due_date": "<date>",
+              "end_date": "<date>",
+              "hex_color": "",
+              "id": "<id>",
+              "identifier": "#3",
+              "index": 3,
+              "is_favorite": false,
+              "labels": [
+                {
+                  "created": "<date>",
+                  "created_by": {
+                    "created": "<date>",
+                    "id": "<id>",
+                    "name": "",
+                    "updated": "<date>",
+                    "username": "demo"
+                  },
+                  "description": "",
+                  "hex_color": "6366f1",
+                  "id": "<id>",
+                  "title": "feature",
+                  "updated": "<date>"
+                }
+              ],
+              "percent_done": 0,
+              "position": 16384,
+              "priority": 2,
+              "project_id": "<id>",
+              "reactions": null,
+              "related_tasks": {},
+              "reminders": null,
+              "repeat_after": 0,
+              "repeat_mode": 0,
+              "start_date": "<date>",
+              "title": "New hero section",
+              "updated": "<date>"
+            }
+          ],
+          "title": "Done",
+          "updated": "<date>"
+        }
+      ],
+      "total": 3
+    },
+    "errors": []
+  },
+  {
+    "method": "GET",
+    "template": "/api/v2/projects/:id/views/:id/tasks",
+    "calls": 21,
+    "statuses": {
+      "200": 21
+    },
+    "entity": "Task",
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "project_id": {
+                "type": "integer"
+              },
+              "done": {
+                "type": "boolean"
+              },
+              "done_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "due_date": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "reminders": {
+                "type": "null"
+              },
+              "repeat_after": {
+                "type": "integer"
+              },
+              "repeat_mode": {
+                "type": "integer"
+              },
+              "priority": {
+                "type": "integer"
+              },
+              "start_date": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "end_date": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "assignees": {
+                "type": "null"
+              },
+              "labels": {
+                "type": [
+                  "null",
+                  "array"
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string",
+                      "enum": [
+                        "bug",
+                        "feature",
+                        "urgent"
+                      ]
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "hex_color": {
+                      "type": "string"
+                    },
+                    "created_by": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "username": {
+                          "type": "string"
+                        },
+                        "created": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "updated": {
+                          "type": "string",
+                          "format": "date-time"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "username",
+                        "created",
+                        "updated"
+                      ]
+                    },
+                    "created": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updated": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "description",
+                    "hex_color",
+                    "created_by",
+                    "created",
+                    "updated"
+                  ]
+                }
+              },
+              "hex_color": {
+                "type": "string"
+              },
+              "percent_done": {
+                "type": "integer"
+              },
+              "identifier": {
+                "type": "string"
+              },
+              "index": {
+                "type": "integer"
+              },
+              "related_tasks": {
+                "type": "object",
+                "properties": {},
+                "required": []
+              },
+              "attachments": {
+                "type": "null"
+              },
+              "cover_image_attachment_id": {
+                "type": "integer"
+              },
+              "is_favorite": {
+                "type": "boolean"
+              },
+              "created": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "bucket_id": {
+                "type": "integer"
+              },
+              "comment_count": {
+                "type": "integer"
+              },
+              "position": {
+                "type": "integer"
+              },
+              "reactions": {
+                "type": "null"
+              },
+              "created_by": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "created": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "username",
+                  "created",
+                  "updated"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "description",
+              "project_id",
+              "done",
+              "done_at",
+              "due_date",
+              "reminders",
+              "repeat_after",
+              "repeat_mode",
+              "priority",
+              "start_date",
+              "end_date",
+              "assignees",
+              "labels",
+              "hex_color",
+              "percent_done",
+              "identifier",
+              "index",
+              "related_tasks",
+              "attachments",
+              "cover_image_attachment_id",
+              "is_favorite",
+              "created",
+              "updated",
+              "bucket_id",
+              "comment_count",
+              "position",
+              "reactions",
+              "created_by"
+            ]
+          }
+        },
+        "total": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "total_pages": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "items",
+        "total",
+        "page",
+        "per_page",
+        "total_pages"
+      ]
+    },
+    "example": {
+      "$schema": "http://localhost:3456/api/v2/schemas/PaginatedTask.json",
+      "items": [],
+      "page": 1,
+      "per_page": 50,
+      "total": 0,
+      "total_pages": 0
+    },
+    "errors": []
+  },
+  {
+    "method": "GET",
+    "template": "/api/v2/tasks",
+    "calls": 160,
+    "statuses": {
+      "200": 160
+    },
+    "entity": "Task",
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "project_id": {
+                "type": "integer"
+              },
+              "done": {
+                "type": "boolean"
+              },
+              "done_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "due_date": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "reminders": {
+                "type": "null"
+              },
+              "repeat_after": {
+                "type": "integer"
+              },
+              "repeat_mode": {
+                "type": "integer"
+              },
+              "priority": {
+                "type": "integer"
+              },
+              "start_date": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "end_date": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "assignees": {
+                "type": "null"
+              },
+              "labels": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string",
+                      "enum": [
+                        "bug",
+                        "feature",
+                        "urgent"
+                      ]
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "hex_color": {
+                      "type": "string"
+                    },
+                    "created_by": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "username": {
+                          "type": "string"
+                        },
+                        "created": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "updated": {
+                          "type": "string",
+                          "format": "date-time"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "username",
+                        "created",
+                        "updated"
+                      ]
+                    },
+                    "created": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updated": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "description",
+                    "hex_color",
+                    "created_by",
+                    "created",
+                    "updated"
+                  ]
+                }
+              },
+              "hex_color": {
+                "type": "string"
+              },
+              "percent_done": {
+                "type": "integer"
+              },
+              "identifier": {
+                "type": "string"
+              },
+              "index": {
+                "type": "integer"
+              },
+              "related_tasks": {
+                "type": "object",
+                "properties": {},
+                "required": []
+              },
+              "attachments": {
+                "type": "null"
+              },
+              "cover_image_attachment_id": {
+                "type": "integer"
+              },
+              "is_favorite": {
+                "type": "boolean"
+              },
+              "created": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "bucket_id": {
+                "type": "integer"
+              },
+              "comment_count": {
+                "type": "integer"
+              },
+              "position": {
+                "type": "integer"
+              },
+              "reactions": {
+                "type": "null"
+              },
+              "created_by": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "created": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "username",
+                  "created",
+                  "updated"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "description",
+              "project_id",
+              "done",
+              "done_at",
+              "due_date",
+              "reminders",
+              "repeat_after",
+              "repeat_mode",
+              "priority",
+              "start_date",
+              "end_date",
+              "assignees",
+              "labels",
+              "hex_color",
+              "percent_done",
+              "identifier",
+              "index",
+              "related_tasks",
+              "attachments",
+              "cover_image_attachment_id",
+              "is_favorite",
+              "created",
+              "updated",
+              "bucket_id",
+              "position",
+              "reactions",
+              "created_by"
+            ]
+          }
+        },
+        "total": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "total_pages": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "items",
+        "total",
+        "page",
+        "per_page",
+        "total_pages"
+      ]
+    },
+    "example": {
+      "$schema": "http://localhost:3456/api/v2/schemas/PaginatedTask.json",
+      "items": [
+        {
+          "assignees": null,
+          "attachments": null,
+          "bucket_id": "<id>",
+          "comment_count": 0,
+          "cover_image_attachment_id": "<id>",
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "description": "",
+          "done": false,
+          "done_at": "<date>",
+          "due_date": "<date>",
+          "end_date": "<date>",
+          "hex_color": "",
+          "id": "<id>",
+          "identifier": "#2",
+          "index": 2,
+          "is_favorite": false,
+          "labels": [
+            {
+              "created": "<date>",
+              "created_by": {
+                "created": "<date>",
+                "id": "<id>",
+                "name": "",
+                "updated": "<date>",
+                "username": "demo"
+              },
+              "description": "",
+              "hex_color": "e5484d",
+              "id": "<id>",
+              "title": "bug",
+              "updated": "<date>"
+            },
+            {
+              "created": "<date>",
+              "created_by": {
+                "created": "<date>",
+                "id": "<id>",
+                "name": "",
+                "updated": "<date>",
+                "username": "demo"
+              },
+              "description": "",
+              "hex_color": "f59e0b",
+              "id": "<id>",
+              "title": "urgent",
+              "updated": "<date>"
+            }
+          ],
+          "percent_done": 0,
+          "position": 0,
+          "priority": 4,
+          "project_id": "<id>",
+          "reactions": null,
+          "related_tasks": {},
+          "reminders": null,
+          "repeat_after": 0,
+          "repeat_mode": 0,
+          "start_date": "<date>",
+          "title": "Fix checkout crash",
+          "updated": "<date>"
+        },
+        {
+          "assignees": null,
+          "attachments": null,
+          "bucket_id": "<id>",
+          "comment_count": 0,
+          "cover_image_attachment_id": "<id>",
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "description": "<p>Contrastes et navigation clavier</p>",
+          "done": false,
+          "done_at": "<date>",
+          "due_date": "<date>",
+          "end_date": "<date>",
+          "hex_color": "",
+          "id": "<id>",
+          "identifier": "#4",
+          "index": 4,
+          "is_favorite": false,
+          "labels": null,
+          "percent_done": 0,
+          "position": 0,
+          "priority": 3,
+          "project_id": "<id>",
+          "reactions": null,
+          "related_tasks": {},
+          "reminders": null,
+          "repeat_after": 0,
+          "repeat_mode": 0,
+          "start_date": "<date>",
+          "title": "Audit accessibility",
+          "updated": "<date>"
+        },
+        {
+          "assignees": null,
+          "attachments": null,
+          "bucket_id": "<id>",
+          "comment_count": 0,
+          "cover_image_attachment_id": "<id>",
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "description": "",
+          "done": false,
+          "done_at": "<date>",
+          "due_date": "<date>",
+          "end_date": "<date>",
+          "hex_color": "",
+          "id": "<id>",
+          "identifier": "#2",
+          "index": 2,
+          "is_favorite": false,
+          "labels": [
+            {
+              "created": "<date>",
+              "created_by": {
+                "created": "<date>",
+                "id": "<id>",
+                "name": "",
+                "updated": "<date>",
+                "username": "demo"
+              },
+              "description": "",
+              "hex_color": "e5484d",
+              "id": "<id>",
+              "title": "bug",
+              "updated": "<date>"
+            }
+          ],
+          "percent_done": 0,
+          "position": 0,
+          "priority": 5,
+          "project_id": "<id>",
+          "reactions": null,
+          "related_tasks": {},
+          "reminders": null,
+          "repeat_after": 0,
+          "repeat_mode": 0,
+          "start_date": "<date>",
+          "title": "Crash on Android 14",
+          "updated": "<date>"
+        },
+        {
+          "assignees": null,
+          "attachments": null,
+          "bucket_id": "<id>",
+          "comment_count": 0,
+          "cover_image_attachment_id": "<id>",
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "description": "",
+          "done": false,
+          "done_at": "<date>",
+          "due_date": "<date>",
+          "end_date": "<date>",
+          "hex_color": "",
+          "id": "<id>",
+          "identifier": "#1",
+          "index": 1,
+          "is_favorite": false,
+          "labels": [
+            {
+              "created": "<date>",
+              "created_by": {
+                "created": "<date>",
+                "id": "<id>",
+                "name": "",
+                "updated": "<date>",
+                "username": "demo"
+              },
+              "description": "",
+              "hex_color": "6366f1",
+              "id": "<id>",
+              "title": "feature",
+              "updated": "<date>"
+            }
+          ],
+          "percent_done": 0,
+          "position": 0,
+          "priority": 3,
+          "project_id": "<id>",
+          "reactions": null,
+          "related_tasks": {},
+          "reminders": null,
+          "repeat_after": 0,
+          "repeat_mode": 0,
+          "start_date": "<date>",
+          "title": "Push notifications",
+          "updated": "<date>"
+        },
+        {
+          "assignees": null,
+          "attachments": null,
+          "bucket_id": "<id>",
+          "comment_count": 0,
+          "cover_image_attachment_id": "<id>",
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "description": "",
+          "done": false,
+          "done_at": "<date>",
+          "due_date": "<date>",
+          "end_date": "<date>",
+          "hex_color": "",
+          "id": "<id>",
+          "identifier": "#1",
+          "index": 1,
+          "is_favorite": false,
+          "labels": [
+            {
+              "created": "<date>",
+              "created_by": {
+                "created": "<date>",
+                "id": "<id>",
+                "name": "",
+                "updated": "<date>",
+                "username": "demo"
+              },
+              "description": "",
+              "hex_color": "6366f1",
+              "id": "<id>",
+              "title": "feature",
+              "updated": "<date>"
+            }
+          ],
+          "percent_done": 0,
+          "position": 0,
+          "priority": 1,
+          "project_id": "<id>",
+          "reactions": null,
+          "related_tasks": {},
+          "reminders": null,
+          "repeat_after": 0,
+          "repeat_mode": 0,
+          "start_date": "<date>",
+          "title": "Update footer links",
+          "updated": "<date>"
+        }
+      ],
+      "page": 1,
+      "per_page": 50,
+      "total": 5,
+      "total_pages": 1
+    },
+    "errors": []
+  },
+  {
+    "method": "DELETE",
+    "template": "/api/v2/tasks/:id",
+    "calls": 1,
+    "statuses": {
+      "204": 1
+    },
+    "entity": "Task",
+    "errors": []
+  },
+  {
+    "method": "GET",
+    "template": "/api/v2/tasks/:id",
+    "calls": 2,
+    "statuses": {
+      "200": 2
+    },
+    "entity": "Task",
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "project_id": {
+          "type": "integer"
+        },
+        "done": {
+          "type": "boolean"
+        },
+        "done_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "due_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "reminders": {
+          "type": "null"
+        },
+        "repeat_after": {
+          "type": "integer"
+        },
+        "repeat_mode": {
+          "type": "integer"
+        },
+        "priority": {
+          "type": "integer"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "assignees": {
+          "type": "null"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "hex_color": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "created": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "username",
+                  "created",
+                  "updated"
+                ]
+              },
+              "created": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "description",
+              "hex_color",
+              "created_by",
+              "created",
+              "updated"
+            ]
+          }
+        },
+        "hex_color": {
+          "type": "string"
+        },
+        "percent_done": {
+          "type": "integer"
+        },
+        "identifier": {
+          "type": "string"
+        },
+        "index": {
+          "type": "integer"
+        },
+        "related_tasks": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        },
+        "attachments": {
+          "type": "null"
+        },
+        "cover_image_attachment_id": {
+          "type": "integer"
+        },
+        "is_favorite": {
+          "type": "boolean"
+        },
+        "subscription": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "entity": {
+              "type": "string"
+            },
+            "entity_id": {
+              "type": "integer"
+            },
+            "created": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "id",
+            "entity",
+            "entity_id",
+            "created"
+          ]
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "bucket_id": {
+          "type": "integer"
+        },
+        "buckets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "project_view_id": {
+                "type": "integer"
+              },
+              "limit": {
+                "type": "integer"
+              },
+              "count": {
+                "type": "integer"
+              },
+              "position": {
+                "type": "integer"
+              },
+              "created": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "created_by": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "project_view_id",
+              "limit",
+              "count",
+              "position",
+              "created",
+              "updated",
+              "created_by"
+            ]
+          }
+        },
+        "position": {
+          "type": "integer"
+        },
+        "reactions": {
+          "type": "null"
+        },
+        "created_by": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "created": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updated": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "username",
+            "created",
+            "updated"
+          ]
+        },
+        "max_permission": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "project_id",
+        "done",
+        "done_at",
+        "due_date",
+        "reminders",
+        "repeat_after",
+        "repeat_mode",
+        "priority",
+        "start_date",
+        "end_date",
+        "assignees",
+        "labels",
+        "hex_color",
+        "percent_done",
+        "identifier",
+        "index",
+        "related_tasks",
+        "attachments",
+        "cover_image_attachment_id",
+        "is_favorite",
+        "subscription",
+        "created",
+        "updated",
+        "bucket_id",
+        "buckets",
+        "position",
+        "reactions",
+        "created_by",
+        "max_permission"
+      ]
+    },
+    "example": {
+      "$schema": "http://localhost:3456/api/v2/schemas/TaskReadOneBody.json",
+      "assignees": null,
+      "attachments": null,
+      "bucket_id": "<id>",
+      "buckets": [
+        {
+          "count": 0,
+          "created": "<date>",
+          "created_by": null,
+          "id": "<id>",
+          "limit": 0,
+          "position": 100,
+          "project_view_id": "<id>",
+          "title": "To-Do",
+          "updated": "<date>"
+        }
+      ],
+      "cover_image_attachment_id": "<id>",
+      "created": "<date>",
+      "created_by": {
+        "created": "<date>",
+        "id": "<id>",
+        "name": "",
+        "updated": "<date>",
+        "username": "demo"
+      },
+      "description": "",
+      "done": false,
+      "done_at": "<date>",
+      "due_date": "<date>",
+      "end_date": "<date>",
+      "hex_color": "",
+      "id": "<id>",
+      "identifier": "#2",
+      "index": 2,
+      "is_favorite": false,
+      "labels": [
+        {
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "description": "",
+          "hex_color": "e5484d",
+          "id": "<id>",
+          "title": "bug",
+          "updated": "<date>"
+        },
+        {
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "description": "",
+          "hex_color": "f59e0b",
+          "id": "<id>",
+          "title": "urgent",
+          "updated": "<date>"
+        }
+      ],
+      "max_permission": 2,
+      "percent_done": 0,
+      "position": 0,
+      "priority": 4,
+      "project_id": "<id>",
+      "reactions": null,
+      "related_tasks": {},
+      "reminders": null,
+      "repeat_after": 0,
+      "repeat_mode": 0,
+      "start_date": "<date>",
+      "subscription": {
+        "created": "<date>",
+        "entity": "task",
+        "entity_id": "<id>",
+        "id": "<id>"
+      },
+      "title": "Fix checkout crash",
+      "updated": "<date>"
+    },
+    "errors": []
+  },
+  {
+    "method": "PATCH",
+    "template": "/api/v2/tasks/:id",
+    "calls": 2,
+    "statuses": {
+      "200": 2
+    },
+    "entity": "Task",
+    "requestFormat": "json-patch",
+    "requestSchema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "done": {
+          "type": "boolean"
+        },
+        "due_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "priority": {
+          "type": "integer"
+        },
+        "hex_color": {
+          "type": "string"
+        },
+        "percent_done": {
+          "type": "integer"
+        },
+        "repeat_after": {
+          "type": "integer"
+        },
+        "repeat_mode": {
+          "type": "integer"
+        },
+        "is_favorite": {
+          "type": "boolean"
+        },
+        "bucket_id": {
+          "type": "integer"
+        },
+        "project_id": {
+          "type": "integer"
+        },
+        "reminders": {
+          "type": "array",
+          "items": {
+            "type": []
+          }
+        },
+        "cover_image_attachment_id": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "done",
+        "due_date",
+        "start_date",
+        "end_date",
+        "priority",
+        "hex_color",
+        "percent_done",
+        "repeat_after",
+        "repeat_mode",
+        "is_favorite",
+        "bucket_id",
+        "project_id",
+        "reminders",
+        "cover_image_attachment_id"
+      ]
+    },
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "project_id": {
+          "type": "integer"
+        },
+        "done": {
+          "type": "boolean"
+        },
+        "done_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "due_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "reminders": {
+          "type": "null"
+        },
+        "repeat_after": {
+          "type": "integer"
+        },
+        "repeat_mode": {
+          "type": "integer"
+        },
+        "priority": {
+          "type": "integer"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "assignees": {
+          "type": "array",
+          "items": {
+            "type": []
+          }
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "hex_color": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "created": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "username",
+                  "created",
+                  "updated"
+                ]
+              },
+              "created": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "description",
+              "hex_color",
+              "created_by",
+              "created",
+              "updated"
+            ]
+          }
+        },
+        "hex_color": {
+          "type": "string"
+        },
+        "percent_done": {
+          "type": "integer"
+        },
+        "identifier": {
+          "type": "string"
+        },
+        "index": {
+          "type": "integer"
+        },
+        "related_tasks": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        },
+        "attachments": {
+          "type": "null"
+        },
+        "cover_image_attachment_id": {
+          "type": "integer"
+        },
+        "is_favorite": {
+          "type": "boolean"
+        },
+        "subscription": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "entity": {
+              "type": "string"
+            },
+            "entity_id": {
+              "type": "integer"
+            },
+            "created": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "id",
+            "entity",
+            "entity_id",
+            "created"
+          ]
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "bucket_id": {
+          "type": "integer"
+        },
+        "position": {
+          "type": "integer"
+        },
+        "reactions": {
+          "type": "null"
+        },
+        "created_by": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "created": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updated": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "username",
+            "created",
+            "updated"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "project_id",
+        "done",
+        "done_at",
+        "due_date",
+        "reminders",
+        "repeat_after",
+        "repeat_mode",
+        "priority",
+        "start_date",
+        "end_date",
+        "assignees",
+        "labels",
+        "hex_color",
+        "percent_done",
+        "identifier",
+        "index",
+        "related_tasks",
+        "attachments",
+        "cover_image_attachment_id",
+        "is_favorite",
+        "subscription",
+        "created",
+        "updated",
+        "bucket_id",
+        "position",
+        "reactions",
+        "created_by"
+      ]
+    },
+    "example": {
+      "assignees": [],
+      "attachments": null,
+      "bucket_id": "<id>",
+      "cover_image_attachment_id": "<id>",
+      "created": "<date>",
+      "created_by": {
+        "created": "<date>",
+        "id": "<id>",
+        "name": "",
+        "updated": "<date>",
+        "username": "demo"
+      },
+      "description": "",
+      "done": true,
+      "done_at": "<date>",
+      "due_date": "<date>",
+      "end_date": "<date>",
+      "hex_color": "",
+      "id": "<id>",
+      "identifier": "#1",
+      "index": 1,
+      "is_favorite": false,
+      "labels": [
+        {
+          "created": "<date>",
+          "created_by": {
+            "created": "<date>",
+            "id": "<id>",
+            "name": "",
+            "updated": "<date>",
+            "username": "demo"
+          },
+          "description": "",
+          "hex_color": "6366f1",
+          "id": "<id>",
+          "title": "feature",
+          "updated": "<date>"
+        }
+      ],
+      "percent_done": 0,
+      "position": 0,
+      "priority": 1,
+      "project_id": "<id>",
+      "reactions": null,
+      "related_tasks": {},
+      "reminders": null,
+      "repeat_after": 0,
+      "repeat_mode": 0,
+      "start_date": "<date>",
+      "subscription": {
+        "created": "<date>",
+        "entity": "task",
+        "entity_id": "<id>",
+        "id": "<id>"
+      },
+      "title": "Update footer links",
+      "updated": "<date>"
+    },
+    "errors": []
+  },
+  {
+    "method": "GET",
+    "template": "/api/v2/tasks/:id/comments",
+    "calls": 2,
+    "statuses": {
+      "200": 2
+    },
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": []
+          }
+        },
+        "total": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "total_pages": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "items",
+        "total",
+        "page",
+        "per_page",
+        "total_pages"
+      ]
+    },
+    "example": {
+      "$schema": "http://localhost:3456/api/v2/schemas/PaginatedTaskComment.json",
+      "items": [],
+      "page": 1,
+      "per_page": 50,
+      "total": 0,
+      "total_pages": 0
+    },
+    "errors": []
+  },
+  {
+    "method": "POST",
+    "template": "/api/v2/tasks/:id/labels",
+    "calls": 1,
+    "statuses": {
+      "201": 1
+    },
+    "entity": "Label",
+    "requestSchema": {
+      "type": "object",
+      "properties": {
+        "label_id": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "label_id"
+      ]
+    },
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "label_id": {
+          "type": "integer"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "label_id",
+        "created"
+      ]
+    },
+    "example": {
+      "created": "<date>",
+      "label_id": "<id>"
+    },
+    "errors": []
+  },
+  {
+    "method": "GET",
+    "template": "/api/v2/teams",
+    "calls": 3,
+    "statuses": {
+      "200": 3
+    },
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": []
+          }
+        },
+        "total": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "total_pages": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "items",
+        "total",
+        "page",
+        "per_page",
+        "total_pages"
+      ]
+    },
+    "example": {
+      "$schema": "http://localhost:3456/api/v2/schemas/PaginatedTeam.json",
+      "items": [],
+      "page": 1,
+      "per_page": 50,
+      "total": 0,
+      "total_pages": 0
+    },
+    "errors": []
+  },
+  {
+    "method": "GET",
+    "template": "/api/v2/user",
+    "calls": 88,
+    "statuses": {
+      "200": 88
+    },
+    "entity": "User",
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "settings": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email_reminders_enabled": {
+              "type": "boolean"
+            },
+            "discoverable_by_name": {
+              "type": "boolean"
+            },
+            "discoverable_by_email": {
+              "type": "boolean"
+            },
+            "overdue_tasks_reminders_enabled": {
+              "type": "boolean"
+            },
+            "overdue_tasks_reminders_time": {
+              "type": "string"
+            },
+            "default_project_id": {
+              "type": "integer"
+            },
+            "week_start": {
+              "type": "integer"
+            },
+            "language": {
+              "type": "string"
+            },
+            "timezone": {
+              "type": "string"
+            },
+            "frontend_settings": {
+              "type": "null"
+            },
+            "extra_settings_links": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "email_reminders_enabled",
+            "discoverable_by_name",
+            "discoverable_by_email",
+            "overdue_tasks_reminders_enabled",
+            "overdue_tasks_reminders_time",
+            "default_project_id",
+            "week_start",
+            "language",
+            "timezone",
+            "frontend_settings",
+            "extra_settings_links"
+          ]
+        },
+        "deletion_scheduled_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "is_local_user": {
+          "type": "boolean"
+        },
+        "auth_provider": {
+          "type": "string"
+        },
+        "is_admin": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "username",
+        "created",
+        "updated",
+        "settings",
+        "deletion_scheduled_at",
+        "is_local_user",
+        "auth_provider",
+        "is_admin"
+      ]
+    },
+    "example": {
+      "$schema": "http://localhost:3456/api/v2/schemas/UserInfoBody.json",
+      "auth_provider": "local",
+      "created": "<date>",
+      "deletion_scheduled_at": "<date>",
+      "id": "<id>",
+      "is_admin": false,
+      "is_local_user": true,
+      "name": "",
+      "settings": {
+        "default_project_id": "<id>",
+        "discoverable_by_email": false,
+        "discoverable_by_name": false,
+        "email_reminders_enabled": false,
+        "extra_settings_links": null,
+        "frontend_settings": null,
+        "language": "",
+        "name": "",
+        "overdue_tasks_reminders_enabled": true,
+        "overdue_tasks_reminders_time": "9:00",
+        "timezone": "UTC",
+        "week_start": 0
+      },
+      "updated": "<date>",
+      "username": "demo"
+    },
+    "errors": []
+  },
+  {
+    "method": "GET",
+    "template": "/api/v2/user/timezones",
+    "calls": 2,
+    "statuses": {
+      "200": 2
+    },
+    "responseSchema": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "example": [
+      "America/Montserrat",
+      "America/Bogota",
+      "US/Indiana-Starke",
+      "Asia/Barnaul",
+      "America/Recife",
+      "Europe/London",
+      "Antarctica/Macquarie",
+      "Africa/Asmera",
+      "America/Grand_Turk",
+      "America/North_Dakota/Center",
+      "America/Chihuahua",
+      "Europe/Rome",
+      "Eire",
+      "Etc/GMT+11",
+      "America/Indianapolis",
+      "America/Boise",
+      "Africa/Luanda",
+      "Asia/Kamchatka",
+      "Europe/Vatican",
+      "Europe/Guernsey",
+      "Egypt",
+      "America/St_Lucia",
+      "America/North_Dakota/New_Salem",
+      "America/Cambridge_Bay",
+      "America/Phoenix",
+      "Asia/Dubai",
+      "America/Metlakatla",
+      "Arctic/Longyearbyen",
+      "Europe/Luxembourg",
+      "Europe/Monaco",
+      "Turkey",
+      "Antarctica/Casey",
+      "EST",
+      "Etc/GMT+1",
+      "America/Argentina/San_Luis",
+      "America/Santiago",
+      "Australia/Lord_Howe",
+      "Asia/Makassar",
+      "America/Regina",
+      "America/Iqaluit",
+      "US/Eastern",
+      "Mexico/General",
+      "Africa/Malabo",
+      "MET",
+      "Pacific/Chuuk",
+      "Etc/UTC",
+      "US/Pacific",
+      "Asia/Yakutsk",
+      "Asia/Seoul",
+      "Etc/GMT0",
+      "Pacific/Majuro",
+      "America/Anguilla",
+      "Asia/Baku",
+      "Indian/Mayotte",
+      "America/El_Salvador",
+      "Australia/NSW",
+      "America/Matamoros",
+      "Asia/Macau",
+      "Australia/Melbourne",
+      "Pacific/Apia",
+      "Asia/Amman",
+      "America/Aruba",
+      "America/Manaus",
+      "Asia/Yerevan",
+      "Iran",
+      "Etc/GMT+7",
+      "Etc/GMT+0",
+      "Asia/Irkutsk",
+      "Kwajalein",
+      "America/Punta_Arenas",
+      "Australia/Tasmania",
+      "Pacific/Enderbury",
+      "Poland",
+      "Pacific/Guam",
+      "Etc/GMT-2",
+      "Mexico/BajaNorte",
+      "America/Denver",
+      "America/Santo_Domingo",
+      "Africa/Conakry",
+      "America/Dominica",
+      "Africa/Kinshasa",
+      "Etc/GMT+8",
+      "Pacific/Efate",
+      "America/Coral_Harbour",
+      "Asia/Manila",
+      "Europe/Lisbon",
+      "Africa/Sao_Tome",
+      "Africa/Tripoli",
+      "America/Montreal",
+      "Australia/Sydney",
+      "Libya",
+      "America/Kralendijk",
+      "Asia/Kuwait",
+      "America/Jamaica",
+      "America/Argentina/Jujuy",
+      "Europe/Belgrade",
+      "Atlantic/Madeira",
+      "Africa/Bujumbura",
+      "Etc/GMT-4",
+      "America/Rio_Branco",
+      "Brazil/Acre",
+      "America/Miquelon",
+      "Atlantic/Reykjavik",
+      "America/Puerto_Rico",
+      "UTC",
+      "Antarctica/Vostok",
+      "Africa/Brazzaville",
+      "Brazil/West",
+      "Europe/Busingen",
+      "Africa/Windhoek",
+      "Africa/Mbabane",
+      "Asia/Ashgabat",
+      "America/Mexico_City",
+      "America/Winnipeg",
+      "Canada/Central",
+      "Europe/Vaduz",
+      "Asia/Bangkok",
+      "Etc/GMT+3",
+      "Etc/Zulu",
+      "America/Argentina/Ushuaia",
+      "America/Danmarkshavn",
+      "Indian/Mahe",
+      "Antarctica/DumontDUrville",
+      "Pacific/Niue",
+      "America/Argentina/ComodRivadavia",
+      "Australia/Perth",
+      "Europe/Samara",
+      "Asia/Shanghai",
+      "W-SU",
+      "Pacific/Tarawa",
+      "Europe/Ulyanovsk",
+      "Pacific/Yap",
+      "Asia/Baghdad",
+      "Europe/Kirov",
+      "America/Mendoza",
+      "America/Asuncion",
+      "America/Moncton",
+      "Canada/Pacific",
+      "Pacific/Marquesas",
+      "America/St_Barthelemy",
+      "US/Central",
+      "Asia/Almaty",
+      "Canada/Atlantic",
+      "Pacific/Easter",
+      "Asia/Kashgar",
+      "America/Bahia",
+      "Asia/Tehran",
+      "Africa/Maputo",
+      "Atlantic/Bermuda",
+      "America/Caracas",
+      "Africa/Gaborone",
+      "Africa/Asmara",
+      "Atlantic/Canary",
+      "Africa/Bamako",
+      "Canada/Mountain",
+      "Europe/Moscow",
+      "America/Lima",
+      "America/Noronha",
+      "EET",
+      "America/Marigot",
+      "Asia/Brunei",
+      "America/Inuvik",
+      "America/Adak",
+      "Atlantic/Cape_Verde",
+      "Europe/Vienna",
+      "Europe/Kiev",
+      "Pacific/Nauru",
+      "Etc/GMT+9",
+      "Africa/Douala",
+      "Australia/Currie",
+      "America/Rainy_River",
+      "Atlantic/St_Helena",
+      "America/Curacao",
+      "Antarctica/Syowa",
+      "America/Kentucky/Monticello",
+      "Pacific/Rarotonga",
+      "Asia/Katmandu",
+      "Africa/Accra",
+      "Africa/Dar_es_Salaam",
+      "America/Argentina/Catamarca",
+      "America/Argentina/La_Rioja",
+      "Europe/Kyiv",
+      "America/Halifax",
+      "Asia/Novosibirsk",
+      "Asia/Tomsk",
+      "Asia/Thimbu",
+      "Asia/Aden",
+      "America/Indiana/Indianapolis",
+      "Asia/Tokyo",
+      "Asia/Yekaterinburg",
+      "America/Juneau",
+      "America/Guyana",
+      "Iceland",
+      "America/St_Kitts",
+      "Atlantic/Stanley",
+      "America/Vancouver",
+      "Asia/Yangon",
+      "Atlantic/Jan_Mayen",
+      "Australia/Broken_Hill",
+      "Europe/Belfast",
+      "Africa/Ouagadougou",
+      "America/Guadeloupe",
+      "Asia/Hovd",
+      "Asia/Qostanay",
+      "America/Dawson",
+      "Africa/Dakar",
+      "Etc/GMT-3",
+      "Asia/Sakhalin",
+      "Pacific/Bougainville",
+      "Asia/Bishkek",
+      "Asia/Srednekolymsk",
+      "Antarctica/McMurdo",
+      "ROK",
+      "Europe/Amsterdam",
+      "Indian/Christmas",
+      "Etc/GMT-14",
+      "Africa/Khartoum",
+      "Asia/Famagusta",
+      "America/Thule",
+      "Pacific/Guadalcanal",
+      "EST5EDT",
+      "Asia/Vladivostok",
+      "America/Argentina/Cordoba",
+      "NZ",
+      "Pacific/Norfolk",
+      "America/Scoresbysund",
+      "CET",
+      "Africa/Monrovia",
+      "GB-Eire",
+      "America/Indiana/Winamac",
+      "America/Nassau",
+      "Asia/Dhaka",
+      "Asia/Omsk",
+      "Europe/Helsinki",
+      "Europe/Nicosia",
+      "America/Barbados",
+      "Asia/Anadyr",
+      "US/Samoa",
+      "America/Argentina/San_Juan",
+      "Europe/Budapest",
+      "Africa/Lusaka",
+      "Africa/Bissau",
+      "Asia/Istanbul",
+      "America/Fort_Wayne",
+      "America/Hermosillo",
+      "Africa/Bangui",
+      "America/Cordoba",
+      "America/Jujuy",
+      "Brazil/East",
+      "Asia/Jakarta",
+      "Antarctica/Troll",
+      "Pacific/Wake",
+      "Asia/Chita",
+      "Asia/Aqtau",
+      "America/Glace_Bay",
+      "Canada/Saskatchewan",
+      "America/Los_Angeles",
+      "America/Fort_Nelson",
+      "Africa/Lome",
+      "Etc/GMT-12",
+      "CST6CDT",
+      "Africa/Lagos",
+      "Etc/GMT-13",
+      "America/Swift_Current",
+      "America/Santa_Isabel",
+      "America/North_Dakota/Beulah",
+      "US/Mountain",
+      "Etc/GMT",
+      "GMT-0",
+      "Greenwich",
+      "Europe/Volgograd",
+      "Asia/Hebron",
+      "America/Campo_Grande",
+      "Asia/Novokuznetsk",
+      "America/Argentina/Buenos_Aires",
+      "Europe/Athens",
+      "America/Port-au-Prince",
+      "America/Cancun",
+      "Pacific/Pago_Pago",
+      "Europe/Saratov",
+      "Africa/Banjul",
+      "Africa/Timbuktu",
+      "Etc/Greenwich",
+      "UCT",
+      "America/Kentucky/Louisville",
+      "Etc/GMT-10",
+      "Europe/San_Marino",
+      "Europe/Sofia",
+      "America/Porto_Acre",
+      "Africa/Nairobi",
+      "Atlantic/South_Georgia",
+      "Pacific/Honolulu",
+      "America/Nome",
+      "Africa/Casablanca",
+      "Indian/Maldives",
+      "Asia/Damascus",
+      "Cuba",
+      "Australia/West",
+      "Asia/Pyongyang",
+      "Africa/Cairo",
+      "America/Costa_Rica",
+      "America/Detroit",
+      "Jamaica",
+      "Etc/GMT-6",
+      "Pacific/Pohnpei",
+      "Factory",
+      "Africa/Addis_Ababa",
+      "Navajo",
+      "America/Argentina/Mendoza",
+      "America/Maceio",
+      "Pacific/Kiritimati",
+      "Pacific/Ponape",
+      "Europe/Zaporozhye",
+      "Asia/Riyadh",
+      "America/Chicago",
+      "Asia/Kuching",
+      "Zulu",
+      "Asia/Kathmandu",
+      "Europe/Madrid",
+      "Atlantic/Faroe",
+      "Europe/Astrakhan",
+      "Asia/Ashkhabad",
+      "Asia/Jerusalem",
+      "America/Indiana/Marengo",
+      "Asia/Singapore",
+      "US/East-Indiana",
+      "America/Yellowknife",
+      "America/Paramaribo",
+      "Etc/Universal",
+      "Australia/Victoria",
+      "Etc/GMT+5",
+      "Asia/Dushanbe",
+      "America/Sitka",
+      "Europe/Isle_of_Man",
+      "America/Blanc-Sablon",
+      "Asia/Chongqing",
+      "Singapore",
+      "Asia/Pontianak",
+      "Asia/Kuala_Lumpur",
+      "America/Ensenada",
+      "Africa/Porto-Novo",
+      "America/Sao_Paulo",
+      "America/Edmonton",
+      "Asia/Choibalsan",
+      "Asia/Tbilisi",
+      "Europe/Riga",
+      "Asia/Calcutta",
+      "America/Indiana/Tell_City",
+      "America/Monterrey",
+      "Indian/Cocos",
+      "Pacific/Pitcairn",
+      "America/Nuuk",
+      "America/Nipigon",
+      "America/Havana",
+      "Europe/Minsk",
+      "Europe/Prague",
+      "Africa/Harare",
+      "Europe/Dublin",
+      "Etc/GMT-7",
+      "America/Ojinaga",
+      "Asia/Ho_Chi_Minh",
+      "Asia/Ulan_Bator",
+      "Europe/Chisinau",
+      "Etc/GMT+12",
+      "America/Managua",
+      "US/Hawaii",
+      "Etc/GMT+6",
+      "America/Eirunepe",
+      "Africa/Kampala",
+      "Europe/Istanbul",
+      "Africa/Nouakchott",
+      "Atlantic/Azores",
+      "America/Rosario",
+      "America/Cuiaba",
+      "America/Atka",
+      "America/Dawson_Creek",
+      "Europe/Tiraspol",
+      "America/Boa_Vista",
+      "Pacific/Kosrae",
+      "Europe/Paris",
+      "Brazil/DeNoronha",
+      "Asia/Colombo",
+      "America/New_York",
+      "HST",
+      "Pacific/Tahiti",
+      "Africa/Djibouti",
+      "Europe/Andorra",
+      "Etc/GMT-8",
+      "Africa/Maseru",
+      "America/Tortola",
+      "America/Rankin_Inlet",
+      "Asia/Macao",
+      "Pacific/Johnston",
+      "America/Godthab",
+      "Asia/Rangoon",
+      "Antarctica/Davis",
+      "America/Fortaleza",
+      "Australia/Eucla",
+      "America/Menominee",
+      "Asia/Khandyga",
+      "Etc/GMT-5",
+      "Atlantic/Faeroe",
+      "Asia/Qyzylorda",
+      "Europe/Kaliningrad",
+      "America/Tijuana",
+      "America/St_Johns",
+      "Pacific/Chatham",
+      "America/Port_of_Spain",
+      "Asia/Bahrain",
+      "Etc/GMT-1",
+      "Africa/Niamey",
+      "Indian/Antananarivo",
+      "America/Tegucigalpa",
+      "America/Mazatlan",
+      "MST7MDT",
+      "America/Belem",
+      "America/Yakutat",
+      "Africa/Johannesburg",
+      "Pacific/Gambier",
+      "America/Panama",
+      "America/Toronto",
+      "Asia/Taipei",
+      "Australia/Canberra",
+      "Antarctica/Mawson",
+      "Pacific/Saipan",
+      "Asia/Jayapura",
+      "Europe/Vilnius",
+      "Asia/Hong_Kong",
+      "Pacific/Samoa",
+      "Europe/Podgorica",
+      "Asia/Thimphu",
+      "Asia/Tel_Aviv",
+      "Asia/Urumqi",
+      "Canada/Eastern",
+      "Etc/GMT-9",
+      "America/Anchorage",
+      "Europe/Oslo",
+      "GB",
+      "US/Arizona",
+      "Pacific/Auckland",
+      "Australia/Hobart",
+      "Antarctica/Palmer",
+      "Pacific/Truk",
+      "Etc/GMT+2",
+      "Africa/Mogadishu",
+      "Africa/Lubumbashi",
+      "Africa/Freetown",
+      "America/St_Thomas",
+      "Indian/Comoro",
+      "America/Belize",
+      "Hongkong",
+      "Europe/Copenhagen",
+      "Asia/Phnom_Penh",
+      "Africa/Juba",
+      "America/Bahia_Banderas",
+      "America/Whitehorse",
+      "Australia/Brisbane",
+      "Europe/Berlin",
+      "America/Cayman",
+      "Africa/Ceuta",
+      "Australia/South",
+      "America/Cayenne",
+      "America/Pangnirtung",
+      "Chile/Continental",
+      "Asia/Oral",
+      "Africa/El_Aaiun",
+      "Etc/UCT",
+      "Africa/Ndjamena",
+      "America/Araguaina",
+      "Etc/GMT+10",
+      "Universal",
+      "Africa/Blantyre",
+      "Indian/Chagos",
+      "US/Michigan",
+      "Asia/Chungking",
+      "Asia/Ust-Nera",
+      "Asia/Dili",
+      "America/Creston",
+      "Asia/Krasnoyarsk",
+      "Asia/Nicosia",
+      "PST8PDT",
+      "America/Argentina/Salta",
+      "GMT+0",
+      "Asia/Ulaanbaatar",
+      "America/Thunder_Bay",
+      "Australia/Queensland",
+      "Indian/Mauritius",
+      "Europe/Zurich",
+      "Asia/Aqtobe",
+      "Australia/Yancowinna",
+      "Asia/Magadan",
+      "America/Knox_IN",
+      "Mexico/BajaSur",
+      "Indian/Reunion",
+      "US/Alaska",
+      "Africa/Algiers",
+      "Pacific/Kwajalein",
+      "America/Martinique",
+      "Pacific/Palau",
+      "America/Merida",
+      "Europe/Simferopol",
+      "Pacific/Funafuti",
+      "Asia/Saigon",
+      "Pacific/Wallis",
+      "America/Atikokan",
+      "ROC",
+      "Asia/Dacca",
+      "Canada/Newfoundland",
+      "Europe/Bratislava",
+      "Asia/Karachi",
+      "Pacific/Fiji",
+      "Asia/Gaza",
+      "America/Guatemala",
+      "PRC",
+      "Europe/Brussels",
+      "Europe/Bucharest",
+      "Indian/Kerguelen",
+      "America/Guayaquil",
+      "America/Argentina/Rio_Gallegos",
+      "Europe/Stockholm",
+      "Africa/Libreville",
+      "Antarctica/South_Pole",
+      "Africa/Kigali",
+      "Pacific/Noumea",
+      "America/Goose_Bay",
+      "America/Catamarca",
+      "Canada/Yukon",
+      "America/Buenos_Aires",
+      "Europe/Skopje",
+      "Antarctica/Rothera",
+      "America/Shiprock",
+      "America/Porto_Velho",
+      "America/La_Paz",
+      "Europe/Gibraltar",
+      "Europe/Ljubljana",
+      "Europe/Warsaw",
+      "Asia/Tashkent",
+      "America/Indiana/Vevay",
+      "Pacific/Midway",
+      "America/Argentina/Tucuman",
+      "GMT",
+      "Asia/Kolkata",
+      "Australia/Lindeman",
+      "Europe/Zagreb",
+      "Asia/Samarkand",
+      "Asia/Atyrau",
+      "Asia/Beirut",
+      "Australia/North",
+      "Israel",
+      "Pacific/Fakaofo",
+      "WET",
+      "Asia/Ujung_Pandang",
+      "Etc/GMT-11",
+      "US/Aleutian",
+      "Asia/Kabul",
+      "Europe/Sarajevo",
+      "Etc/GMT-0",
+      "America/St_Vincent",
+      "Asia/Qatar",
+      "Etc/GMT+4",
+      "Africa/Abidjan",
+      "America/Indiana/Vincennes",
+      "Europe/Uzhgorod",
+      "Europe/Uzhhorod",
+      "Asia/Harbin",
+      "Pacific/Tongatapu",
+      "Africa/Tunis",
+      "Europe/Tirane",
+      "Europe/Mariehamn",
+      "America/Indiana/Petersburg",
+      "Pacific/Galapagos",
+      "Asia/Vientiane",
+      "Europe/Tallinn",
+      "America/Antigua",
+      "Pacific/Port_Moresby",
+      "America/Indiana/Knox",
+      "Australia/Adelaide",
+      "Europe/Zaporizhzhia",
+      "Asia/Muscat",
+      "Europe/Jersey",
+      "GMT0",
+      "America/Grenada",
+      "America/Virgin",
+      "America/Resolute",
+      "Japan",
+      "Europe/Malta",
+      "Australia/LHI",
+      "America/Montevideo",
+      "America/Santarem",
+      "America/Lower_Princes",
+      "Australia/ACT",
+      "Portugal",
+      "Australia/Darwin",
+      "NZ-CHAT",
+      "Chile/EasterIsland",
+      "America/Louisville",
+      "MST"
+    ],
+    "errors": []
+  },
+  {
+    "method": "POST",
+    "template": "/api/v2/user/token/refresh",
+    "calls": 172,
+    "statuses": {
+      "200": 172
+    },
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "token"
+      ]
+    },
+    "example": {
+      "$schema": "http://localhost:3456/api/v2/schemas/AuthTokenBodyBody.json",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3OTI0MTA3NTAsImlhdCI6MTc5MjQxMDE1MCwiaWQiOjEsImlzX2FkbWluIjpmYWxzZSwianRpIjoiOGI3MjFhZjctYWZhMy00NDEyLWFkOWYtMWI4NzljNTVkZDhjIiwic2lkIjoiN2NmNTZjZWEtY2JlOS00MDllLWFiYzMtMGE4NWFkZTc4YTA5IiwidHlwZSI6MSwidXNlcm5hbWUiOiJkZW1vIn0.K0J3VtQwSL3QSiRglUFzV0PAEUhWyc69LsPOi1NFEf0"
+    },
+    "errors": []
+  }
+]

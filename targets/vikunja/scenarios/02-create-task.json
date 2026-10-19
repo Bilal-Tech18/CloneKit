@@ -1,0 +1,9 @@
+{
+  "name": "Créer une tâche",
+  "description": "Ajout rapide d'une tâche dans un projet.",
+  "steps": [
+    { "goto": "/projects/2" },
+    { "fill": { "role": "textbox", "name": "Add a task…" }, "value": "Write tests" },
+    { "press": "Enter", "on": { "role": "textbox", "name": "Add a task…" }, "label": "valider (Entrée)" }
+  ]
+}

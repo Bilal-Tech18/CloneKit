@@ -1,0 +1,9 @@
+{
+  "name": "Vue liste d'un projet",
+  "description": "Ouvrir la vue liste d'un projet, passer à un autre projet par la barre latérale, marquer une tâche comme faite.",
+  "steps": [
+    { "goto": "/projects/2/9" },
+    { "click": { "role": "link", "name": "Mobile app", "exact": false } },
+    { "check": { "role": "checkbox", "name": "Mark 'Push notifications' as done" } }
+  ]
+}

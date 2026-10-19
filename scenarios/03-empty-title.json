@@ -1,0 +1,9 @@
+{
+  "name": "Titre vide refusé",
+  "description": "Règle métier : une tâche sans titre doit être refusée avec un message.",
+  "steps": [
+    { "goto": "/" },
+    { "click": { "role": "link", "name": "Website redesign", "exact": false } },
+    { "press": "Enter", "on": { "role": "textbox", "name": "Task title" }, "label": "valider avec un titre vide" }
+  ]
+}

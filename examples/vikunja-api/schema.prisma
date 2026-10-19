@@ -1,0 +1,121 @@
+// Brouillon généré depuis le trafic observé — à relire, pas à appliquer tel quel.
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum LabelTitle {
+  bug
+  feature
+  urgent
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  name String
+  username String
+  created DateTime
+  updated DateTime
+  settings Json
+  deletion_scheduled_at DateTime
+  is_local_user Boolean
+  auth_provider String
+  is_admin Boolean
+}
+
+model Project {
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  identifier String
+  hex_color String
+  parent_project_id Int
+  owner Json
+  is_archived Boolean
+  background_information Json?
+  background_blur_hash String
+  is_favorite Boolean
+  position Int
+  views Json?
+  max_permission Int?
+  created DateTime
+  updated DateTime
+  tasks Task[]
+}
+
+model Label {
+  id Int @id @default(autoincrement())
+  title LabelTitle // enum probable, valeurs observées à confirmer
+  description String
+  hex_color String
+  created_by Json
+  created DateTime
+  updated DateTime
+}
+
+model Task {
+  id Int @id @default(autoincrement())
+  title String
+  description String? // absent de certaines réponses
+  project_id Int? // absent de certaines réponses
+  project Project? @relation(fields: [project_id], references: [id])
+  done Boolean? // absent de certaines réponses
+  done_at DateTime? // absent de certaines réponses
+  due_date DateTime? // absent de certaines réponses
+  reminders Json?
+  repeat_after Int? // absent de certaines réponses
+  repeat_mode Int? // absent de certaines réponses
+  priority Int? // absent de certaines réponses
+  start_date DateTime? // absent de certaines réponses
+  end_date DateTime? // absent de certaines réponses
+  assignees Json?
+  labels Json?
+  hex_color String? // absent de certaines réponses
+  percent_done Int? // absent de certaines réponses
+  identifier String? // absent de certaines réponses
+  index Int? // absent de certaines réponses
+  related_tasks Json? // absent de certaines réponses
+  attachments Json?
+  cover_image_attachment_id Int? // absent de certaines réponses
+  is_favorite Boolean? // absent de certaines réponses
+  created DateTime
+  updated DateTime
+  bucket_id Int? // absent de certaines réponses
+  bucket Bucket? @relation(fields: [bucket_id], references: [id])
+  comment_count Int? // absent de certaines réponses
+  position Int
+  reactions Json?
+  created_by Json
+  project_view_id Int? // absent de certaines réponses
+  tasks Json? // absent de certaines réponses
+  limit Int? // absent de certaines réponses
+  count Int? // absent de certaines réponses
+  subscription Json? // absent de certaines réponses
+  buckets Json? // absent de certaines réponses
+  max_permission Int? // absent de certaines réponses
+}
+
+model Filter {
+  id Int @id @default(autoincrement())
+  filters Json
+  title String
+  description String
+  owner Json
+  is_favorite Boolean
+  created DateTime
+  updated DateTime
+}
+
+model Bucket {
+  id Int @id @default(autoincrement())
+  title String
+  project_view_id Int
+  limit Int
+  count Int
+  position Int
+  created DateTime
+  updated DateTime
+  created_by Json
+  tasks Task[]
+}

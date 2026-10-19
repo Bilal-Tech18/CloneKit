@@ -1,0 +1,9 @@
+{
+  "name": "Préfixes magiques",
+  "description": "Règle métier : '*label' et '!priorité' sont interprétés à la saisie.",
+  "steps": [
+    { "goto": "/projects/3" },
+    { "fill": { "role": "textbox", "name": "Add a task…" }, "value": "Refactor login *bug !4" },
+    { "press": "Enter", "on": { "role": "textbox", "name": "Add a task…" }, "label": "valider (Entrée)" }
+  ]
+}

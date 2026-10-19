@@ -1,0 +1,36 @@
+{
+  "name": "clonekit",
+  "version": "1.0.0",
+  "scripts": {
+    "capture": "tsx src/cli.ts capture",
+    "diff": "tsx src/cli.ts diff",
+    "fix": "tsx src/cli.ts fix",
+    "gen-front": "tsx src/cli.ts gen-front",
+    "demo": "bash demo/run-demo.sh",
+    "demo:fix": "bash demo/run-fix.sh",
+    "demo:original": "node demo/original/app.mjs",
+    "demo:clone": "node demo/clone/app.mjs",
+    "vikunja:front": "PORT=4100 BACKEND=http://localhost:3457 node examples/vikunja-front/server.mjs",
+    "typecheck": "tsc --noEmit",
+    "demo:clone-fixed": "PORT=4002 node examples/demo-clone-fixed/app.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "POC: capture agentique + diff de parité original/clone",
+  "devDependencies": {
+    "@types/diff": "^7.0.2",
+    "@types/node": "^26.6.5",
+    "@types/pngjs": "^6.0.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "commander": "^15.0.0",
+    "diff": "^9.0.0",
+    "pixelmatch": "^8.0.0",
+    "playwright": "^1.64.1",
+    "pngjs": "^7.0.0"
+  },
+  "type": "module"
+}

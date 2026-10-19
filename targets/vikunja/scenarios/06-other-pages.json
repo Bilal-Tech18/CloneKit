@@ -1,0 +1,9 @@
+{
+  "name": "Pages secondaires",
+  "description": "Étiquettes, tâches à venir, paramètres utilisateur.",
+  "steps": [
+    { "goto": "/labels" },
+    { "goto": "/tasks/by/upcoming" },
+    { "goto": "/user/settings/general" }
+  ]
+}

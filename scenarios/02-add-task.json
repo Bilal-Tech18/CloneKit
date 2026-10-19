@@ -1,0 +1,11 @@
+{
+  "name": "Créer une tâche",
+  "description": "Chemin nominal : création d'une tâche haute priorité.",
+  "steps": [
+    { "goto": "/" },
+    { "click": { "role": "link", "name": "Website redesign", "exact": false } },
+    { "fill": { "role": "textbox", "name": "Task title" }, "value": "Write tests" },
+    { "select": { "role": "combobox", "name": "Priority" }, "value": "high" },
+    { "press": "Enter", "on": { "role": "textbox", "name": "Task title" }, "label": "valider le formulaire (Entrée)" }
+  ]
+}

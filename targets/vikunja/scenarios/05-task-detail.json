@@ -1,0 +1,8 @@
+{
+  "name": "Modifier la priorité d'une tâche",
+  "description": "Page détail : changement de priorité.",
+  "steps": [
+    { "goto": "/tasks/2" },
+    { "select": { "role": "combobox", "name": "Priority" }, "value": "High" }
+  ]
+}

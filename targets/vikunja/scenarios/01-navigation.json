@@ -1,0 +1,11 @@
+{
+  "name": "Navigation principale",
+  "description": "Accueil, liste des projets, vues d'un projet (liste, kanban, table).",
+  "steps": [
+    { "goto": "/" },
+    { "click": { "role": "link", "name": "Projects", "exact": true } },
+    { "goto": "/projects/2" },
+    { "click": { "role": "link", "name": "Kanban" } },
+    { "click": { "role": "link", "name": "Table" } }
+  ]
+}

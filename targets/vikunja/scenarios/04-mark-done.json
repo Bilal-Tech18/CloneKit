@@ -1,0 +1,8 @@
+{
+  "name": "Terminer une tâche",
+  "description": "Changement d'état depuis la vue liste.",
+  "steps": [
+    { "goto": "/projects/2" },
+    { "check": { "role": "checkbox", "name": "Mark 'Update footer links' as done" } }
+  ]
+}

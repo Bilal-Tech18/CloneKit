@@ -1,0 +1,10 @@
+{
+  "name": "Terminer une tâche",
+  "description": "Changement d'état : cocher puis décocher.",
+  "steps": [
+    { "goto": "/" },
+    { "click": { "role": "link", "name": "Website redesign", "exact": false } },
+    { "check": { "role": "checkbox", "name": "Done: Update footer links" } },
+    { "uncheck": { "role": "checkbox", "name": "Done: Update footer links" } }
+  ]
+}

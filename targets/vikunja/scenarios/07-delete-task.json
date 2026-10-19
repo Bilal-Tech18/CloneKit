@@ -1,0 +1,10 @@
+{
+  "name": "Supprimer une tâche",
+  "description": "Page détail : suppression avec confirmation, puis vérification dans la vue liste du projet.",
+  "steps": [
+    { "goto": "/tasks/1" },
+    { "click": { "role": "button", "name": "Delete" } },
+    { "click": { "role": "button", "name": "Do it!" } },
+    { "goto": "/projects/2/9" }
+  ]
+}
