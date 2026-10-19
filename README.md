@@ -1,5 +1,7 @@
 # CloneKit
 
+🇫🇷 Français · 🇬🇧 [English version](README.en.md)
+
 **Cloner un logiciel web jusqu'à le rendre indiscernable pour une IA, et le prouver par la mesure.**
 
 CloneKit outille la chaîne complète du clonage d'une application web pour en faire un environnement d'entraînement RL :
